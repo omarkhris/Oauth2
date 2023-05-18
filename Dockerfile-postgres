@@ -1,0 +1,12 @@
+FROM postgres:13
+
+# Set environment variables
+ENV POSTGRES_DB=user
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=post123
+
+# Copy initialization script
+#COPY init.sql /docker-entrypoint-initdb.d/
+
+# Expose the PostgreSQL port
+EXPOSE 5432

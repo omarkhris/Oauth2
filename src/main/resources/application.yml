@@ -11,7 +11,7 @@ spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:postgresql://localhost:5432/users
+    url: jdbc:postgresql://localhost:5432/user
     username: postgres
     password: post123
     driver-class-name: org.postgresql.Driver
