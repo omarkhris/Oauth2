@@ -1,7 +1,7 @@
 FROM postgres:13
 
 # Set environment variables
-ENV POSTGRES_DB=user
+ENV POSTGRES_DB=userdb
 ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=post123
 
