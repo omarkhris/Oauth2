@@ -30,14 +30,14 @@ public class KeyUtils {
 
     @Value("${access-token.private}")
 
-    private String accessPrivateKeyPath;
+    private String accessPrivateKeyPath = "secret";
     @Value("${access-token.public}")
-    private String accessPublicKeyPath;
+    private String accessPublicKeyPath = "secret";
 
 
     @Value("${refresh-token.private}")
 
-    private String refreshPrivateKeyPath;
+    private String refreshPrivateKeyPath = "";
     @Value("${refresh-token.public}")
     private String refreshPublicKeyPath;
 

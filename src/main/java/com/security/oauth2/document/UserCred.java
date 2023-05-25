@@ -1,27 +1,30 @@
 package com.security.oauth2.document;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+
+
+
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
 
-@Entity
+//@Entity
+@Document
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
 public class UserCred implements UserDetails {
-
+//    @GeneratedValue(generator = "uuid2")
+//    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+//
     private String id;
 
     @NonNull
@@ -29,6 +32,7 @@ public class UserCred implements UserDetails {
 
     @NonNull
     private String password;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -53,5 +57,8 @@ public class UserCred implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
     }
 }

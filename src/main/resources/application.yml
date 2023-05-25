@@ -8,16 +8,31 @@ refresh-token:
   public: ${REFRESH_TOKEN_PUBLIC_KEY_PATH}}
 
 spring:
+  data:
+    mongodb:
+      port: ${MONGODB_PORT:27017}
+      host: ${MONGODB_HOST:172.17.0.2}
+      authentication-database: ${MONGODB_AUTH_DATABASE:admin}
+      database: ${MONGODB_DATABASE:userdb}
+      username: ${MONGODB_USERNAME:moon}
+      password: ${MONGODB_PASSWORD:moon123}
+      authentication-mechanism: ${MONGODB_AUTH_MECHANISM:SCRAM-SHA-1}
+
+
+
+
   profiles:
     active: dev
-  datasource:
-    url: jdbc:postgresql://172.17.0.2:5432/userdb
-    username: postgres
-    password: post123
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
+
+  #  datasource:
+#    url: jdbc:postgresql://localhost:5432/users
+#    url: jdbc:postgresql://172.17.0.2:5432/userdb
+#    username: postgres
+#    password: post123
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
 
 
 logging:

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pod-db-sec
+  template:
+    metadata:
+      labels:
+        app: pod-db-sec
+    spec:
+      containers:
+        - name: oauthReg
+          image: oauthreg.azurecr.io/user-servicedb
+          ports:
+            - containerPort: 27017
