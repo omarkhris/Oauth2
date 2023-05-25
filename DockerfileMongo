@@ -1,0 +1,13 @@
+FROM mongo:4.4
+
+# Set environment variables
+ENV MONGO_INITDB_ROOT_USERNAME=moon
+ENV MONGO_INITDB_ROOT_PASSWORD=moon123
+ENV MONGO_INITDB_DATABASE=userdb
+ENV MONGO_INITDB_AUTHENTICATION_MECHANISM=SCRAM-SHA-1
+
+# Copy the user creation script
+COPY create-user.js /docker-entrypoint-initdb.d/
+
+# Expose the MongoDB port
+EXPOSE 27017

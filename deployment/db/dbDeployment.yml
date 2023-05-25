@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pod-db-sec
+  template:
+    metadata:
+      labels:
+        app: pod-db-sec
+    spec:
+      containers:
+        - name: oauthReg
+          image: oauthreg.azurecr.io/db:13
+          ports:
+            - containerPort: 5432

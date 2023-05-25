@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: security-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod-oauth-sec
+  template:
+    metadata:
+      labels:
+        app: pod-oauth-sec
+    spec:
+      containers:
+        - name: oauthReg
+          image: oauthreg.azurecr.io/user-service
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              value: moon:moon123@db-service:80/userdb

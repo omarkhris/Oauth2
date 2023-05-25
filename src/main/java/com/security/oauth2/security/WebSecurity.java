@@ -48,7 +48,8 @@ public class WebSecurity {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((authorize) -> authorize.requestMatchers("/api/auth/*").permitAll().anyRequest().authenticated()).csrf().disable().cors().disable().httpBasic().disable().oauth2ResourceServer((oauth2) -> oauth2.jwt((jwt) -> jwt.jwtAuthenticationConverter(jwtToUserConverter))).sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).exceptionHandling((exceptions) -> exceptions.authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint()).accessDeniedHandler(new BearerTokenAccessDeniedHandler()));
+        http.authorizeHttpRequests((authorize) -> authorize.requestMatchers("/api/auth/*","/api/v1/users/**").permitAll().requestMatchers("/api/v1/users/**").permitAll() // Allow access to "/api/v1/users/{id}"
+                .anyRequest().authenticated()).csrf().disable().cors().disable().httpBasic().disable().oauth2ResourceServer((oauth2) -> oauth2.jwt((jwt) -> jwt.jwtAuthenticationConverter(jwtToUserConverter))).sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).exceptionHandling((exceptions) -> exceptions.authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint()).accessDeniedHandler(new BearerTokenAccessDeniedHandler()));
 
         return http.build();
     }

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: security-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pod-oauth-sec
+  template:
+    metadata:
+      labels:
+        app: pod-oauth-sec
+    spec:
+      containers:
+        - name: oauthReg
+          image: oauthreg.azurecr.io/sec2:v1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://db-service:80/userdb
